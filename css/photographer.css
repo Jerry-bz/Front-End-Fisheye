@@ -1,0 +1,270 @@
+#contact_modal {
+    display: none;
+}
+
+body {
+    font-family: "DM Sans", sans-serif;
+    margin: 0;
+}
+
+#mainPhotographer {
+    position: absolute;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 3%;
+}
+
+.photograph-header {
+    background-color: #FAFAFA;
+    height: auto;
+    margin: 2% 100px;
+}
+
+.photograph-header h1 {
+    color: #D3573C;
+    font-size: 2.2em;
+}
+
+.photograph-header .localisation {
+    color: #901C1C;
+    font-size: 1.3em;
+}
+
+
+.photograph-header .citation {
+    color: #525252;
+}
+
+.photograph-header img {
+    height: 160px;
+    width: 160px;
+    clip-path: circle();
+}
+
+
+.contact_button,
+.submit_button {
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    padding: 11px;
+    width: 170px;
+    height: 55px;
+    border: none;
+    background-color: #901C1C;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#navigation {
+    margin-left: 4%;
+}
+
+.div-select {
+    display: flex;
+    gap: 1.25%;
+}
+
+#main-button {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 5vw;
+    height: 3vh;
+    background-color: #901C1C;
+    color: white;
+    border: none;
+    border-radius: 2.5%;
+}
+
+.div-nav {
+    display: flex;
+    flex-direction: column;
+    transform: translate(3.6vw, -4.5vh);
+    padding: 0% 0.3%;
+    background-color: #901C1C;
+    width: 5vw;
+    display: none;
+}
+
+.button1,
+.button2,
+.button3 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 5vw;
+    height: 3vh;
+    background-color: #901C1C;
+    color: white;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid white;
+    border-radius: 2.5%;
+}
+
+
+.modal {
+    border-radius: 5px;
+    background-color: #DB8876;
+    width: 35%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2em 2em;
+    transform: translateY(-3em);
+    margin: auto;
+}
+
+.header-form {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.close-modal {
+    cursor: pointer;
+    margin-bottom: 5%;
+    background-image: url("../assets/icons/close.svg");
+    background-repeat: no-repeat;
+    background-color: transparent;
+    border: none;
+    height: 50px;
+    width: 50px;
+}
+
+.modal .header-form h2 {
+    font-size: 2.5em;
+    font-weight: normal;
+}
+
+form {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+form label {
+    color: #312E2E;
+    font-size: 36px;
+}
+
+form div {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: self-start;
+    margin-bottom: 26px;
+}
+
+form input {
+    width: 100%;
+    height: 68px;
+    border: none;
+    border-radius: 5px;
+}
+
+.medias {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+
+
+/****************************/
+
+figure img,
+figure video {
+    width: 23rem;
+    aspect-ratio: 6/6;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+
+.media-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #901C1C;
+}
+
+.media-info h2 {
+    margin-right: auto;
+}
+
+#info-like-price {
+    position: fixed;
+    border-radius: 5px 5px 0px 0px;
+    bottom: 0;
+    right: 35px;
+    display: flex;
+    gap: 30px;
+    padding: 15px;
+    background-color: #DB8876;
+    font-size: 24px;
+    color: black;
+    z-index: 2;
+}
+
+#lightbox {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: rgba(0,0,0,.8);
+    height: 100%;
+    width: 100%;
+    z-index: 10;
+    display: none;
+    overflow: scroll;
+}
+
+.close__lightbox {
+    cursor: pointer;
+    margin-bottom: 5%;
+    background-image: url("../assets/icons/close.svg");
+    background-repeat: no-repeat;
+    background-color: transparent;
+    border: none;
+    height: 50px;
+    width: 50px;
+    transform: translate(92vw, 15vh);
+}
+
+.prev__lightbox, .next__lightbox {
+    border: none;
+    background-color: transparent;
+    color: white;
+    cursor: pointer;
+}
+
+.prev__lightbox {
+    transform: translate(5vw, 50vh);
+    z-index: 6;
+}
+
+.next__lightbox {
+    transform: translate(88vw, 50vh);
+    z-index: 6;
+}
+
+.container__lightbox {
+  display: flex;
+  justify-content: center;
+}
+
+.img__lightbox {
+    height: 80vh;
+    aspect-ratio: 10/10;
+    z-index: 5;
+    object-fit: cover;
+}
+
