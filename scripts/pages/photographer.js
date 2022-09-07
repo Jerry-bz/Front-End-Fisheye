@@ -1,7 +1,7 @@
 import getPhotographers from "../factories/data.js";
 import photographerFactory from "../factories/factoryPhotographers.js";
 import mediaFactory from "../factories/factoryMedias.js";
-import lightBoxDOM, { lightBox }  from "../utils/lightbox.js";
+import { lightBoxDOM,lightBox }  from "../utils/lightbox.js";
 
 
 // Page Photographer

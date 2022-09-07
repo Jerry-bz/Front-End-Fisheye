@@ -176,6 +176,7 @@ form input {
 .medias {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
 }
 
 
@@ -184,8 +185,8 @@ form input {
 
 figure img,
 figure video {
-    width: 23rem;
-    aspect-ratio: 6/6;
+    width: 28vw;
+    aspect-ratio: 4/4;
     object-fit: cover;
     border-radius: 5px;
 }
@@ -218,8 +219,11 @@ figure video {
 
 #lightbox {
     position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background-color: rgba(0,0,0,.8);
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, .8);
     height: 100%;
     width: 100%;
     z-index: 10;
@@ -239,7 +243,8 @@ figure video {
     transform: translate(92vw, 15vh);
 }
 
-.prev__lightbox, .next__lightbox {
+.prev__lightbox,
+.next__lightbox {
     border: none;
     background-color: transparent;
     color: white;
@@ -257,14 +262,13 @@ figure video {
 }
 
 .container__lightbox {
-  display: flex;
-  justify-content: center;
+    display: flex;
+    justify-content: center;
 }
 
-.img__lightbox {
+.media__lightbox {
     height: 80vh;
     aspect-ratio: 10/10;
     z-index: 5;
     object-fit: cover;
 }
-
