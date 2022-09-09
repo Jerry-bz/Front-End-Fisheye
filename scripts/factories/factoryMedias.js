@@ -55,6 +55,7 @@ export default function mediaFactory(data) {
       videoMedia.classList.add('src-media');
       videoMedia.setAttribute("controls", "");
       videoMedia.setAttribute("type", "video/mp4");
+      videoMedia.setAttribute("alt", title);
       videoMedia.src = typeMedia;
 
       //videoMedia.setAttribute("autoplay", "true");

@@ -155,23 +155,14 @@ async function displayPhotographers(photographersArray) {
 async function displayMedias(mediasArray) {
   const photographMedias = document.querySelector(".medias");
   photographMedias.innerHTML = "";
-  let index = 0;
-  lightBoxDOM();
   mediasArray.forEach((media) => {
     if (photographerIdURL == media.photographerId) {
       const galeryMedias = mediaFactory(media);
       const mediaDOM = galeryMedias.getUserMediaDOM();
-      mediaDOM.setAttribute("data-index", index);
-      console.log(index);
       mediaDOM.addEventListener("click", (event) => {
         event.preventDefault();
-        let i = event.currentTarget.getAttribute("data-index");
-        if (event.target.nodeName != "SPAN") {
-          console.log("lightbox element:" + i);
-          console.log(rawMedia[i].image);
-        }
         // Click on heart
-        else if (event.target.nodeName == "SPAN") {
+        if (event.target.nodeName == "SPAN") {
           let span = event.target.getAttribute("class");
           console.log(span);
           if (span === "far fa-heart") {
@@ -184,9 +175,9 @@ async function displayMedias(mediasArray) {
         }
       });
       photographMedias.appendChild(mediaDOM);
-      index++;
     }
   });
+  lightBoxDOM();
   lightBox();
 }
 
@@ -199,3 +190,6 @@ async function initId() {
 }
 
 initId();
+
+
+
