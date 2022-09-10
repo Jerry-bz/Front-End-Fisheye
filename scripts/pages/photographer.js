@@ -29,7 +29,7 @@ const photographerone = await getPhotographers().then(
 );
 
 
-// HTML Navigation
+// HTML Navigation Medias des photographes
 
 function navigationMedia() {
   let mainButton = document.querySelector("#main-button");
@@ -64,22 +64,7 @@ function navigationMedia() {
 
 navigationMedia();
 
-
-function sortMedias(media) {
-  const buttons = document.querySelectorAll('.button1,.button2,.button3');
-  let mediaSorted = [];
-  for (let i = 0; i < buttons.length; i++) {
-    buttons[i].addEventListener('click', (e) => {
-      const buttonValue = e.target.value;
-      mediaSorted = sortArray(buttonValue, media);
-      console.log(mediaSorted);
-      console.log(buttonValue);
-      displayMedias(mediaSorted);
-    });
-  }
-}
-
-
+// Function qui trie les médias 
 function sortArray(value, medias) {
   let mediaSorted = [];
   if (value == "Popularité") {
@@ -96,6 +81,20 @@ function sortArray(value, medias) {
 
   console.log(mediaSorted);
   return mediaSorted;
+}
+
+function sortMedias(media) {
+  const buttons = document.querySelectorAll('.button1,.button2,.button3');
+  let mediaSorted = [];
+  for (let i = 0; i < buttons.length; i++) {
+    buttons[i].addEventListener('click', (e) => {
+      const buttonValue = e.target.value;
+      mediaSorted = sortArray(buttonValue, media);
+      console.log(mediaSorted);
+      console.log(buttonValue);
+      displayMedias(mediaSorted);
+    });
+  }
 }
 
 
@@ -125,7 +124,7 @@ function updateTotalLikes() {
   const infoPhotographerFooter = document.getElementById("info-like-price");
   infoPhotographerFooter.innerHTML = `
   <div>${likes}
-      <span class="fas fa-heart"></span>
+      <span class="fas fa-heart" aria-label="Total likes photographers"></span>
   </div>
   <div>${price}</div>
   `;
@@ -134,7 +133,7 @@ function updateTotalLikes() {
 updateTotalLikes();
 
 //Fonction qui affichent l'entête de la page photographe, la navigation médias et le formulaire
-async function displayPhotographers(photographersArray) {
+ function displayPhotographers(photographersArray) {
   const photographHeader = document.querySelector(".photograph-header");
   const photographModal = document.querySelector("#contact_modal");
   photographersArray.forEach((photographer) => {
@@ -152,17 +151,21 @@ async function displayPhotographers(photographersArray) {
 }
 
 // Fonction qui affichent les médias
-async function displayMedias(mediasArray) {
+ function displayMedias(mediasArray) {
   const photographMedias = document.querySelector(".medias");
   photographMedias.innerHTML = "";
+  let index = 0;
   mediasArray.forEach((media) => {
     if (photographerIdURL == media.photographerId) {
       const galeryMedias = mediaFactory(media);
       const mediaDOM = galeryMedias.getUserMediaDOM();
+      mediaDOM.setAttribute("data-index", index);
+
+      // Click de la souris sur le coeur 
       mediaDOM.addEventListener("click", (event) => {
         event.preventDefault();
-        // Click on heart
-        if (event.target.nodeName == "SPAN") {
+        let i = event.currentTarget.getAttribute("data-index");
+         if (event.target.nodeName == "SPAN") {
           let span = event.target.getAttribute("class");
           console.log(span);
           if (span === "far fa-heart") {
@@ -174,12 +177,34 @@ async function displayMedias(mediasArray) {
           }
         }
       });
+
+      // Pression sur la touche entrée
+      mediaDOM.addEventListener("keypress", (event) => {
+        event.preventDefault();
+        let i = event.currentTarget.getAttribute("data-index");
+        // Si touche entrée
+        if (event.key == "Enter") {
+         if (event.target.nodeName == "SPAN") {
+          let span = event.target.getAttribute("class");
+          console.log(span);
+          if (span === "far fa-heart") {
+            likeMedia(i);
+            event.target.setAttribute("class", "fas fa-heart");
+          } else {
+            dislikeMedia(i);
+            event.target.setAttribute("class", "far fa-heart");
+          }
+        }
+        }
+      });
       photographMedias.appendChild(mediaDOM);
+      index++;
     }
   });
   lightBoxDOM();
   lightBox();
 }
+
 
 async function initId() {
   // Récupère les données des photographes et des médias
@@ -190,6 +215,4 @@ async function initId() {
 }
 
 initId();
-
-
 

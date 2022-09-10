@@ -5,7 +5,7 @@ export default function photographerFactory(data) {
     // HTML Page d'acceuil
     const article = document.createElement("article");
     const indexPhotographer = `
-    <a href="photographer.html?id=${id}" role="link">
+    <a href="photographer.html?id=${id}" role="link" tabindex="0">
         <img src="assets/images/photographers/${portrait}" alt="" role="img" aria-label="${name}"/>
             <h2 class="name">${name}</h2>
     </a>

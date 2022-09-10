@@ -29,6 +29,7 @@ export default function mediaFactory(data) {
       /**************** */
       const a = document.createElement("a");
       a.setAttribute("href", `#`);
+      a.classList.add('link__media');
       const divMediaInfo = document.createElement("div");
       divMediaInfo.setAttribute("class", "media-info");
       const h2 = document.createElement("h2");
@@ -50,12 +51,13 @@ export default function mediaFactory(data) {
       /********************** */
       const a = document.createElement("a");
       a.setAttribute("href", `#`);
+      a.classList.add('link__media');
       // const article = document.createElement("article");
       const videoMedia = document.createElement("video");
       videoMedia.classList.add('src-media');
       videoMedia.setAttribute("controls", "");
       videoMedia.setAttribute("type", "video/mp4");
-      videoMedia.setAttribute("alt", title);
+      videoMedia.setAttribute("title", title);
       videoMedia.src = typeMedia;
 
       //videoMedia.setAttribute("autoplay", "true");

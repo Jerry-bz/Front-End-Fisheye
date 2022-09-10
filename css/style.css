@@ -10,6 +10,10 @@ a {
     text-decoration: inherit;
 }
 
+a:focus-visible {
+    outline: 4px dashed #901C1C ;
+}
+
 header {
     display: flex;
     flex-direction: row;
