@@ -35,7 +35,7 @@ function close() {
 };
 
 
- // Fonction qui affiche la lightBox
+ // Affichage lightbox + focus
  export function lightBox() {
     const linkMedias = document.querySelectorAll('.link__media');
     const linkLightbox = document.querySelector('.link__lightbox');
@@ -170,12 +170,14 @@ function keydownLightbox() {
     const prevLightbox = document.querySelector('.prev__lightbox');
     const nextLightbox = document.querySelector('.next__lightbox');
 
-    // Touche clavier droite ou gauche
+    // Focus Lightbox 
     lightboxSection.addEventListener('keydown', (e) => {
         // Si dernier element focusable alors focus sur la croix
         if (document.activeElement == nextLightbox) {
+            if (e.key == "Tab") {
             closeLightbox.focus();
             e.preventDefault();
+            }   
         }
         if (e.key == "ArrowRight") { // Si touche droite, image suivante
             next();

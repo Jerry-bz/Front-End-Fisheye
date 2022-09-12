@@ -39,18 +39,14 @@ function focusForm() {
   const focusableElements = '.close-modal,input,textarea,.submit_button';
   const firstFocusableElement = document.querySelectorAll(focusableElements)[0];
   // Focus du 1er element
-  console.log(firstFocusableElement);
   const focusableContent = document.querySelectorAll(focusableElements);
-  console.log(focusableContent);
   // Focus du dernier element
   const lastFocusableElement = focusableContent[focusableContent.length - 1];
-  console.log(lastFocusableElement);
 
   // On ecoute les touches du clavier
   form.addEventListener('keydown', function (e) {
-    
+
     let isTabPressed = e.key === 'Tab';
-    console.log(isTabPressed, 'key');
 
     // Ferme le formulaire avec la touche Echap
     if (e.key == "Escape") {
@@ -58,9 +54,9 @@ function focusForm() {
     }
 
     // Touche entrée valide uniquement pour la croix et le button submit
-       if (e.target != lastFocusableElement && e.target != firstFocusableElement && e.key == 'Enter') {
-       e.preventDefault();
-     }
+    if (e.target != lastFocusableElement && e.target != firstFocusableElement && e.key == 'Enter') {
+      e.preventDefault();
+    }
 
     // Fin de l'execution si touche différent de Tab
     if (!isTabPressed) {
@@ -68,13 +64,13 @@ function focusForm() {
     }
 
     //  Touche du clavier Tab
-    if (KeyboardEvent == "Tab") { 
+    if (KeyboardEvent == "Tab") {
       if (document.activeElement === firstFocusableElement) {
         lastFocusableElement.focus(); // Ajout du focus pour le dernier élément
       }
-      
-    } else { 
-      if (document.activeElement === lastFocusableElement) { 
+
+    } else {
+      if (document.activeElement === lastFocusableElement) {
         firstFocusableElement.focus(); // Ajout du focus pour le premier élément 
         e.preventDefault();
       }

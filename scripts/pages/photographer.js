@@ -1,33 +1,9 @@
-import getPhotographers from "../factories/data.js";
-import photographerFactory from "../factories/factoryPhotographers.js";
-import mediaFactory from "../factories/factoryMedias.js";
-import { lightBoxDOM,lightBox }  from "../utils/lightbox.js";
-
-
 // Page Photographer
 
-//Fonction pour récuperer l'id du photographe
-function getPhotographerId() {
-  return new URL(window.location).searchParams.get("id");
-}
-
-const photographerIdURL = getPhotographerId();
-
-// Data des medias
- const rawMedia = await getPhotographers().then((data) =>
-  data.media.filter((media) => {
-    return media.photographerId == photographerIdURL;
-  })
-);
-
-// Data des photographes 
-const photographerone = await getPhotographers().then(
-  (data) =>
-    data.photographers.filter((photographer) => {
-      return photographerIdURL == photographer.id;
-    })[0]
-);
-
+import { getPhotographers, photographerone, rawMedia, photographerIdURL } from "../factories/data.js";
+import photographerFactory from "../factories/factoryPhotographers.js";
+import mediaFactory from "../factories/factoryMedias.js";
+import { lightBoxDOM, lightBox } from "../utils/lightbox.js";
 
 // HTML Navigation Medias des photographes
 
@@ -64,8 +40,9 @@ function navigationMedia() {
 
 navigationMedia();
 
-// Function qui trie les médias 
+// Function qui trie les médias selon la valeur du bouton sélectionné
 function sortArray(value, medias) {
+
   let mediaSorted = [];
   if (value == "Popularité") {
     mediaSorted = medias.sort((a, b) => { return b.likes - a.likes }), 'popularité';
@@ -79,45 +56,56 @@ function sortArray(value, medias) {
     mediaSorted = medias.sort((a, b) => { return a.title.localeCompare(b.title) }, 'titre');
   }
 
-  console.log(mediaSorted);
   return mediaSorted;
-}
+};
+
 
 function sortMedias(media) {
+  // Recupération des boutons de navigation
   const buttons = document.querySelectorAll('.button1,.button2,.button3');
-  let mediaSorted = [];
   for (let i = 0; i < buttons.length; i++) {
     buttons[i].addEventListener('click', (e) => {
+      // récuperation de la valeur du bouton lors du click
       const buttonValue = e.target.value;
-      mediaSorted = sortArray(buttonValue, media);
-      console.log(mediaSorted);
-      console.log(buttonValue);
+      // Trie des médias selon la valeur du bouton
+      const mediaSorted = sortArray(buttonValue, media);
       displayMedias(mediaSorted);
     });
   }
 }
 
 
+// Incrémentation du nombre de Likes du média
 function likeMedia(index) {
+  //index media
   let media = rawMedia[index];
-  console.log(media);
+  // Tous les éléments likes
+  let allLikes = document.getElementsByClassName("likes");
+  // Element du dom qui correspond au likes
+  let likes = allLikes[index];
+  // incrémentation du nombre de likes selon l'index
   media.likes += 1;
-  let allLikesP = document.getElementsByClassName("likes");
-  let likesP = allLikesP[index];
-  likesP.textContent = media.likes;
+  // Affichage incrémentation du nombre de likes
+  likes.textContent = media.likes;
   updateTotalLikes();
-}
+};
 
+// Décrémentation du nombre de likes du média
 function dislikeMedia(index) {
+  //index media
   let media = rawMedia[index];
-  console.log(media);
+  // Tous les éléments likes
+  let allLikes = document.getElementsByClassName("likes");
+  // Element du dom qui correspond au likes
+  let likes = allLikes[index];
+  // décrémentation du nombre de likes selon l'index
   media.likes -= 1;
-  let allLikesP = document.getElementsByClassName("likes");
-  let likesP = allLikesP[index];
-  likesP.textContent = media.likes;
+  // Affichage décrémentation du nombre de likes
+  likes.textContent = media.likes;
   updateTotalLikes();
-}
+};
 
+// Total des likes de tous les medias du photographe
 function updateTotalLikes() {
   const price = `${photographerone.price}€ / jour`;
   const likes = rawMedia.reduce((acc, el) => acc + el.likes, 0);
@@ -133,7 +121,7 @@ function updateTotalLikes() {
 updateTotalLikes();
 
 //Fonction qui affichent l'entête de la page photographe, la navigation médias et le formulaire
- function displayPhotographers(photographersArray) {
+function displayPhotographers(photographersArray) {
   const photographHeader = document.querySelector(".photograph-header");
   const photographModal = document.querySelector("#contact_modal");
   photographersArray.forEach((photographer) => {
@@ -145,13 +133,14 @@ updateTotalLikes();
       // Formulaire
       const userModalDom = photographerModelId.getUserModalDOM();
       photographModal.appendChild(userModalDom);
-      focusForm();  
+      focusForm();
     }
   });
 }
 
 // Fonction qui affichent les médias
- function displayMedias(mediasArray) {
+function displayMedias(mediasArray) {
+  sortMedias(mediasArray);
   const photographMedias = document.querySelector(".medias");
   photographMedias.innerHTML = "";
   let index = 0;
@@ -165,7 +154,7 @@ updateTotalLikes();
       mediaDOM.addEventListener("click", (event) => {
         event.preventDefault();
         let i = event.currentTarget.getAttribute("data-index");
-         if (event.target.nodeName == "SPAN") {
+        if (event.target.nodeName == "SPAN") {
           let span = event.target.getAttribute("class");
           console.log(span);
           if (span === "far fa-heart") {
@@ -184,17 +173,17 @@ updateTotalLikes();
         let i = event.currentTarget.getAttribute("data-index");
         // Si touche entrée
         if (event.key == "Enter") {
-         if (event.target.nodeName == "SPAN") {
-          let span = event.target.getAttribute("class");
-          console.log(span);
-          if (span === "far fa-heart") {
-            likeMedia(i);
-            event.target.setAttribute("class", "fas fa-heart");
-          } else {
-            dislikeMedia(i);
-            event.target.setAttribute("class", "far fa-heart");
+          if (event.target.nodeName == "SPAN") {
+            let span = event.target.getAttribute("class");
+            console.log(span);
+            if (span === "far fa-heart") {
+              likeMedia(i);
+              event.target.setAttribute("class", "fas fa-heart");
+            } else {
+              dislikeMedia(i);
+              event.target.setAttribute("class", "far fa-heart");
+            }
           }
-        }
         }
       });
       photographMedias.appendChild(mediaDOM);
@@ -209,8 +198,11 @@ updateTotalLikes();
 async function initId() {
   // Récupère les données des photographes et des médias
   const { photographers, media } = await getPhotographers();
+  // Affichage des données photographes
   displayPhotographers(photographers);
+  // Affichage des médias
   displayMedias(media);
+  // Affichage médias selon la navigation 
   sortMedias(media);
 }
 
