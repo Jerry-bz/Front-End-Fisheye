@@ -1,6 +1,7 @@
 // Page Photographer
 
-import { getPhotographers, photographerone, rawMedia, photographerIdURL } from "../factories/data.js";
+import  getPhotographers from "../factories/data.js";
+import { photographerIdURL,photographerone,rawMedia } from "../factories/data.js";
 import photographerFactory from "../factories/factoryPhotographers.js";
 import mediaFactory from "../factories/factoryMedias.js";
 import { lightBoxDOM, lightBox } from "../utils/lightbox.js";
@@ -118,7 +119,7 @@ function updateTotalLikes() {
   `;
 }
 
-updateTotalLikes();
+// updateTotalLikes();
 
 //Fonction qui affichent l'entête de la page photographe, la navigation médias et le formulaire
 function displayPhotographers(photographersArray) {

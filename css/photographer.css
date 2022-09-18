@@ -223,7 +223,7 @@ figure video {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, .8);
+    background-color: #E5E5E5;
     height: 100%;
     width: 100%;
     z-index: 10;
