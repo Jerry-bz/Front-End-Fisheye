@@ -4,9 +4,9 @@ export default async function getPhotographers() {
   let response = await fetch("data/photographers.json");
   let data = await response.json();
   return data;
-}
+};
 
-//Fonction pour récuperer l'id du photographe
+// Fonction pour récuperer l'id du photographe
 function getPhotographerId() {
   return new URL(window.location).searchParams.get("id");
 };
@@ -15,7 +15,7 @@ export const photographerIdURL = getPhotographerId();
 
 
 // Retourne les données du photographer de la page
-export const photographerone = await getPhotographers().then(
+export const dataPhotographer = await getPhotographers().then(
   (data) =>
     data.photographers.filter((photographer) => {
       return photographerIdURL == photographer.id;
@@ -23,8 +23,8 @@ export const photographerone = await getPhotographers().then(
 );
 
 
-// Retourne les médias
-export const rawMedia = await getPhotographers().then((data) =>
+// Retourne les médias du photographe
+export const dataMedias = await getPhotographers().then((data) =>
   data.media.filter((media) => {
     return media.photographerId == photographerIdURL;
   })

@@ -1,10 +1,13 @@
-// Page Photographer
-
-import  getPhotographers from "../factories/data.js";
-import { photographerIdURL,photographerone,rawMedia } from "../factories/data.js";
+// Fonctions datas
+import getPhotographers from "../factories/data.js";
+import { photographerIdURL, dataPhotographer, dataMedias } from "../factories/data.js";
+// Factories functions
 import photographerFactory from "../factories/factoryPhotographers.js";
 import mediaFactory from "../factories/factoryMedias.js";
+// Utils
 import { lightBoxDOM, lightBox } from "../utils/lightbox.js";
+
+// Page Photographer
 
 // HTML Navigation Medias des photographes
 
@@ -79,7 +82,7 @@ function sortMedias(media) {
 // Incrémentation du nombre de Likes du média
 function likeMedia(index) {
   //index media
-  let media = rawMedia[index];
+  let media = dataMedias[index];
   // Tous les éléments likes
   let allLikes = document.getElementsByClassName("likes");
   // Element du dom qui correspond au likes
@@ -94,7 +97,7 @@ function likeMedia(index) {
 // Décrémentation du nombre de likes du média
 function dislikeMedia(index) {
   //index media
-  let media = rawMedia[index];
+  let media = dataMedias[index];
   // Tous les éléments likes
   let allLikes = document.getElementsByClassName("likes");
   // Element du dom qui correspond au likes
@@ -108,8 +111,8 @@ function dislikeMedia(index) {
 
 // Total des likes de tous les medias du photographe
 function updateTotalLikes() {
-  const price = `${photographerone.price}€ / jour`;
-  const likes = rawMedia.reduce((acc, el) => acc + el.likes, 0);
+  const price = `${dataPhotographer.price}€ / jour`;
+  const likes = dataMedias.reduce((acc, el) => acc + el.likes, 0);
   const infoPhotographerFooter = document.getElementById("info-like-price");
   infoPhotographerFooter.innerHTML = `
   <div>${likes}
@@ -117,9 +120,9 @@ function updateTotalLikes() {
   </div>
   <div>${price}</div>
   `;
-}
+};
 
-// updateTotalLikes();
+updateTotalLikes();
 
 //Fonction qui affichent l'entête de la page photographe, la navigation médias et le formulaire
 function displayPhotographers(photographersArray) {
