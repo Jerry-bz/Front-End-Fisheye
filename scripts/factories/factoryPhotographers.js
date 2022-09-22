@@ -1,45 +1,45 @@
-export default function photographerFactory(data) {
-  const { name, id, portrait, city, country, tagline, price } = data;
+export default function photographerFactory (data) {
+  const { name, id, portrait, city, country, tagline, price } = data
 
-  function getUserCardDOM() {
+  function getUserCardDOM () {
     // HTML Page d'acceuil
-    const article = document.createElement("article");
+    const article = document.createElement('article')
     const indexPhotographer = `
     <a href="photographer.html?id=${id}" role="link" tabindex="0">
         <img src="assets/images/photographers/${portrait}" alt="" role="img" aria-label="${name}"/>
             <h2 class="name">${name}</h2>
     </a>
-        <p class="localisation">${city + "/" + country}</p>
+        <p class="localisation">${city + '/' + country}</p>
         <p class="citation">${tagline}</p>
-        <p class="tariff">${price + "€" + "/jour"}</p>
-    `;
-    article.innerHTML = indexPhotographer;
+        <p class="tariff">${price + '€' + '/jour'}</p>
+    `
+    article.innerHTML = indexPhotographer
 
-    return article;
+    return article
   }
 
-  function getUserProfilDOM() {
+  function getUserProfilDOM () {
     // HTML En-tête page du photographe
-    const header = document.createElement("section");
-    header.classList.add('section-header');
+    const header = document.createElement('section')
+    header.classList.add('section-header')
     const headerPhotographer = `   
     <article class="presentation">
         <h1 class="name">${name}</h1>
-        <p class="localisation">${city + "," + country}</p>
+        <p class="localisation">${city + ',' + country}</p>
         <p class="citation">${tagline}</p>
     </article>
         <button class="contact_button" alt="Contact Me" onclick="displayModal()">Contactez-moi</button>  
         <img src="assets/images/photographers/${portrait}" alt="${name}" role="img" aria-label="${name}"/>
-        `;
+        `
 
-    header.innerHTML = headerPhotographer;
+    header.innerHTML = headerPhotographer
 
-    return header;
+    return header
   }
 
-  function getUserModalDOM() {
+  function getUserModalDOM () {
     // HTML formulaire
-    const formDiv = document.createElement("div");
+    const formDiv = document.createElement('div')
     const form = `
     <div class="modal" role="dialog">
       <form id="contact" action="" method="get">
@@ -66,12 +66,12 @@ export default function photographerFactory(data) {
           <button class="submit_button" aria-label="send">Envoyer</button>
       </form>
     </div>
-    `;
+    `
 
-    formDiv.innerHTML = form;
+    formDiv.innerHTML = form
 
-    return formDiv;
+    return formDiv
   }
 
-  return { getUserCardDOM, getUserProfilDOM, getUserModalDOM };
+  return { getUserCardDOM, getUserProfilDOM, getUserModalDOM }
 }
