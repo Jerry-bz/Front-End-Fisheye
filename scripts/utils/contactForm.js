@@ -48,14 +48,14 @@ function focusForm () {
     const isTabPressed = e.key === 'Tab'
 
     // Ferme le formulaire avec la touche Echap
-    // eslint-disable-next-line eqeqeq
-    if (e.key == 'Escape') {
+
+    if (e.key === 'Escape') {
       closeModal()
     }
 
     // Touche entrée valide uniquement pour la croix et le button submit
-    // eslint-disable-next-line eqeqeq
-    if (e.target != lastFocusableElement && e.target != firstFocusableElement && e.key == 'Enter') {
+
+    if (e.target !== lastFocusableElement && e.target !== firstFocusableElement && e.key === 'Enter') {
       e.preventDefault()
     }
 

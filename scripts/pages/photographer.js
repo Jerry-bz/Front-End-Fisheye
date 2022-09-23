@@ -1,11 +1,11 @@
 /* eslint-disable eqeqeq */
 // Fonctions datas
-import getPhotographers, { photographerIdURL, dataPhotographer, dataMedias } from '../factories/data.js';
+import getPhotographers, { photographerIdURL, dataPhotographer, dataMedias } from '../factories/data.js'
 // Factories functions
-import photographerFactory from '../factories/factoryPhotographers.js';
-import mediaFactory from '../factories/factoryMedias.js';
+import photographerFactory from '../factories/factoryPhotographers.js'
+import mediaFactory from '../factories/factoryMedias.js'
 // Utils
-import { lightBoxDOM, lightBox } from '../utils/lightbox.js';
+import { lightBoxDOM, lightBox } from '../utils/lightbox.js'
 
 // Page Photographer
 
@@ -162,7 +162,7 @@ function displayMedias (mediasArray) {
             event.target.setAttribute('class', 'far fa-heart')
           }
         }
-      });
+      })
 
       // Pression sur la touche entrée
       mediaDOM.addEventListener('keypress', (event) => {
@@ -201,4 +201,4 @@ async function initId () {
   sortMedias(media)
 };
 
-initId();
+initId()
