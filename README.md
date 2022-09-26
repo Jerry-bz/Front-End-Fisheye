@@ -6,10 +6,10 @@ Projet 6 du parcours Javascript-react chez OpenClassroom. Créez un site accessi
 FishEye est un site web qui permet aux photographes indépendants de présenter leurs meilleurs travaux. Ils ont récemment levé des fonds et aimeraient mettre à jour leur site web.
 
 # Installation du projet
-***
+
+Après avoir cloné le projet, il suffit d'ouvrir le fichier ./doc/index.html, puis clic droit "open with live server"
 
 ## Compétences évaluées
-***
 
 * Ecrire du code JavaScript maintenable
 * Assurer l'accessibilité d'un site web
@@ -32,5 +32,9 @@ La programmation orientée objet est utilisée.
 
 Le code est lisible. Choisir des noms qui ont un sens pour les variables, les fonctions et les classes. Ajouter des commentaires au code si le nom n'indique pas clairement ce qu’il se passe.
 
+***
 Voici le lien du site vià github pages : https://jerry-bz.github.io/Front-End-Fisheye/
 
+## Validation de l'accessibilité avec ACHECKER
+
+![image](https://user-images.githubusercontent.com/100424546/192288243-12c13d0b-d2b7-4126-b4c3-246ed090f2ef.png)
