@@ -153,7 +153,6 @@ function displayMedias (mediasArray) {
         const i = event.currentTarget.getAttribute('data-index')
         if (event.target.nodeName == 'SPAN') {
           const span = event.target.getAttribute('class')
-          console.log(span)
           if (span === 'far fa-heart') {
             likeMedia(i)
             event.target.setAttribute('class', 'fas fa-heart')
@@ -198,7 +197,7 @@ async function initId () {
   // Affichage des médias
   displayMedias(media)
   // Affichage médias selon la navigation
-  sortMedias(media)
+  sortMedias(dataMedias)
 };
 
 initId()
