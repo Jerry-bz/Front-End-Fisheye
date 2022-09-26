@@ -34,6 +34,7 @@ Le code est lisible. Choisir des noms qui ont un sens pour les variables, les fo
 
 ***
 Voici le lien du site vià github pages : https://jerry-bz.github.io/Front-End-Fisheye/
+***
 
 ## Validation de l'accessibilité avec ACHECKER
 
